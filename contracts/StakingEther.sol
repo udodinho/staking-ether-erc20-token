@@ -4,7 +4,7 @@ pragma solidity ^0.8.24;
 contract StakingEther {
     struct Stake {
         uint256 stakingTime;
-        uint256 durationInSeconds;
+        uint256 durationInDays;
         uint256 amount;
         uint256 rewards;
         bool isStaked;
@@ -28,7 +28,7 @@ contract StakingEther {
 
         Stake memory userStake = Stake({
             stakingTime: stakingStart,
-            durationInSeconds: _duration * 30 days,
+            durationInDays: block.timestamp + (_duration * 1 days),
             amount: msg.value,
             rewards: 0,
             isStaked: true
@@ -48,7 +48,7 @@ contract StakingEther {
         
         uint256 _totalRewards;
 
-        if (block.timestamp > staker.stakingTime + staker.durationInSeconds) {
+        if (block.timestamp > staker.stakingTime + staker.durationInDays) {
             _totalRewards = staker.amount + calculateInterestRate(msg.sender, _stakeId);
         } else {
             _totalRewards = staker.amount;
@@ -81,7 +81,7 @@ contract StakingEther {
         return address(this).balance;
     }
 
-    function getStake() external view returns (Stake[] memory) {
+    function getStakes() external view returns (Stake[] memory) {
         return stakes[msg.sender];
     }
 
