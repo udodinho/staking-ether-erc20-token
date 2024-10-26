@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract UdvToken is ERC20("UDV Token", "UDVT") {
+contract UdvToken is ERC20("UD Token", "UDT") {
     address public owner;
 
     constructor() {
