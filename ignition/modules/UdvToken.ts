@@ -4,9 +4,9 @@ const tokenAddress = "0x88Bf80AAFFf16bED6f7DDD6a63F49D651a00479F";
 
 const StakingERC20TokenModule = buildModule("StakingERC20TokenMModule", (m) => {
 
-    const save = m.contract("StakingERC20TokenM", [tokenAddress]);
+    const stakeERC = m.contract("StakingERC20Token", [tokenAddress]);
 
-    return { save };
+    return { stakeERC };
 });
 
 export default StakingERC20TokenModule;
